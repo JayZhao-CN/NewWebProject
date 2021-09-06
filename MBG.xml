@@ -1,0 +1,36 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+
+<!--不生成注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!--配置数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/manage_sys"
+                        userId="root"
+                        password="159567"/>
+
+<!--指定java Bean的生成位置-->
+        <javaModelGenerator targetPackage="com.learn.managesys.bean" targetProject="src/main/java"/>
+
+<!--        指定sql映射文件位置-->
+        <sqlMapGenerator targetPackage="com.learns.crowd.mapper" targetProject="src/main/resources"/>
+
+<!--        指定dao接口生成的位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.learn.managesys.dao" targetProject="src/main/java"/>
+
+<!--        <table tableName="ms_user" domainObjectName="User"/>-->
+<!--        <table tableName="ms_position" domainObjectName="Position"/>-->
+<!--        <table tableName="ms_clothes" domainObjectName="Clothes"/>-->
+<!--        <table tableName="ms_style" domainObjectName="Style"/>-->
+<!--        <table tableName="ms_type" domainObjectName="Type"/>-->
+<!--        <table tableName="ms_company" domainObjectName="Company"/>-->
+<!--        <table tableName="ms_color" domainObjectName="Color"/>-->
+        <table tableName="ms_clothes" domainObjectName="ClothesOther"/>
+    </context>
+</generatorConfiguration>

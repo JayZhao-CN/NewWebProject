@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
+<com.learns.crowd.mapper namespace="com.learn.managesys.dao.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Type">
+    <id column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+    <result column="t_code" jdbcType="INTEGER" property="tCode" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ms_type
+    where t_id = #{tId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.learn.managesys.bean.Type">
+    insert into ms_type (t_id, t_name, t_code
+      )
+    values (#{tId,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR}, #{tCode,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.learn.managesys.bean.Type">
+    update ms_type
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_code = #{tCode,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select t_id, t_name, t_code
+    from ms_type
+    where t_id = #{tId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select t_id, t_name, t_code
+    from ms_type
+  </select>
+</com.learns.crowd.mapper>

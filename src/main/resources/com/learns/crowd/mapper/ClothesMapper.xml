@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
+<com.learns.crowd.mapper namespace="com.learn.managesys.dao.ClothesMapper">
+    <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Clothes">
+        <id column="c_id" jdbcType="INTEGER" property="cId"/>
+        <result column="c_company" jdbcType="INTEGER" property="cCompanyCode"/>
+        <result column="c_num_cut" jdbcType="INTEGER" property="cNumCut"/>
+        <result column="c_type" jdbcType="INTEGER" property="cTypeCode"/>
+        <result column="c_style" jdbcType="INTEGER" property="cStyleCode"/>
+        <result column="c_num_count" jdbcType="INTEGER" property="cNumCount"/>
+        <result column="c_processor" jdbcType="INTEGER" property="cProcessorCode"/>
+        <result column="c_producer" jdbcType="INTEGER" property="cProducerCode"/>
+        <result column="c_time_produce" jdbcType="TIMESTAMP" property="cTimeProduce"/>
+        <result column="c_time_process" jdbcType="TIMESTAMP" property="cTimeProcess"/>
+        <result column="c_remark" jdbcType="VARCHAR" property="cRemark"/>
+    </resultMap>
+
+    <resultMap id="CompanyResultMap" type="com.learn.managesys.bean.Clothes">
+        <id column="c_id" jdbcType="INTEGER" property="cId"/>
+        <result column="c_company" jdbcType="INTEGER" property="cCompanyCode"/>
+        <result column="c_num_cut" jdbcType="INTEGER" property="cNumCut"/>
+        <result column="c_type" jdbcType="INTEGER" property="cTypeCode"/>
+        <result column="c_style" jdbcType="INTEGER" property="cStyleCode"/>
+        <result column="c_color" jdbcType="INTEGER" property="cColorCode"/>
+        <result column="c_size" jdbcType="INTEGER" property="cSizeCode"/>
+        <result column="c_num_count" jdbcType="INTEGER" property="cNumCount"/>
+        <result column="c_processor" jdbcType="INTEGER" property="cProcessorCode"/>
+        <result column="c_producer" jdbcType="INTEGER" property="cProducerCode"/>
+        <result column="c_time_produce" jdbcType="TIMESTAMP" property="cTimeProduce"/>
+        <result column="c_time_process" jdbcType="TIMESTAMP" property="cTimeProcess"/>
+        <result column="c_remark" jdbcType="VARCHAR" property="cRemark"/>
+
+        <!--  联表查询 职位类bean定义  -->
+        <association property="cCompany" javaType="com.learn.managesys.bean.Company">
+            <id column="co_id" jdbcType="INTEGER" property="coId"/>
+            <result column="co_name" property="coName"/>
+            <result column="co_code" property="coCode"/>
+            <result column="co_leader" property="coLeader"/>
+            <result column="co_state" property="coState"/>
+        </association>
+
+        <!--  联表查询 Type类bean定义  -->
+        <association property="cType" javaType="com.learn.managesys.bean.Type">
+            <id column="t_id" jdbcType="INTEGER" property="tId"/>
+            <result column="t_name" jdbcType="VARCHAR" property="tName"/>
+            <result column="t_code" jdbcType="INTEGER" property="tCode"/>
+        </association>
+
+        <!--  联表查询 Style类bean定义  -->
+        <association property="cStyle" javaType="com.learn.managesys.bean.Style">
+            <id column="s_id" jdbcType="INTEGER" property="sId"/>
+            <result column="s_name" jdbcType="VARCHAR" property="sName"/>
+            <result column="s_code" jdbcType="INTEGER" property="sCode"/>
+        </association>
+
+        <!--  联表查询 color类bean定义  -->
+        <association property="cColor" javaType="com.learn.managesys.bean.Color">
+            <id column="col_id" jdbcType="INTEGER" property="colId"/>
+            <result column="col_name" jdbcType="VARCHAR" property="colName"/>
+            <result column="col_code" jdbcType="INTEGER" property="colCode"/>
+        </association>
+
+        <!--  联表查询 size类bean定义  -->
+        <association property="cSize" javaType="com.learn.managesys.bean.Size">
+            <id column="si_id" jdbcType="INTEGER" property="siId"/>
+            <result column="si_name" jdbcType="VARCHAR" property="siName"/>
+            <result column="si_code" jdbcType="INTEGER" property="siCode"/>
+        </association>
+
+        <!--  联表查询 User类裁剪人bean定义  -->
+        <association property="cUser" javaType="com.learn.managesys.bean.User">
+            <id column="u_id" jdbcType="INTEGER" property="uId"/>
+            <result column="u_username" jdbcType="VARCHAR" property="uUsername"/>
+            <result column="u_code" jdbcType="INTEGER" property="uCode"/>
+            <result column="u_password" jdbcType="VARCHAR" property="uPassword"/>
+            <result column="u_phone" jdbcType="VARCHAR" property="uPhone"/>
+            <result column="processor" jdbcType="VARCHAR" property="processor"/>
+            <result column="producer" jdbcType="VARCHAR" property="producer"/>
+            <result column="u_position" jdbcType="INTEGER" property="uPosition"/>
+            <result column="u_time_start" jdbcType="TIMESTAMP" property="uTimeStart"/>
+            <result column="u_time_end" jdbcType="TIMESTAMP" property="uTimeEnd"/>
+        </association>
+
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from ms_clothes
+        where c_id = #{cId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.learn.managesys.bean.Clothes">
+        insert into ms_clothes (c_company, c_num_cut,
+                                c_type, c_style, c_num_count, c_color, c_size,
+                                c_producer, c_processor,
+                                c_time_produce, c_time_process)
+        values (#{cCompanyCode,jdbcType=INTEGER}, #{cNumCut,jdbcType=INTEGER},
+                #{cNumCount,jdbcType=INTEGER}, #{cTypeCode,jdbcType=INTEGER}, #{cStyleCode,jdbcType=INTEGER},
+                #{cColorCode,jdbcType=INTEGER}, #{cSizeCode,jdbcType=INTEGER},
+                #{cProducerCode,jdbcType=INTEGER}, #{cProcessorCode,jdbcType=INTEGER},
+                #{cTimeProduce,jdbcType=TIMESTAMP}, #{cTimeProcess,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.learn.managesys.bean.Clothes">
+        update ms_clothes
+        set c_num_cut      = #{cNumCut,jdbcType=INTEGER},
+            c_num_count    = #{cNumCount,jdbcType=INTEGER},
+            c_time_produce = #{cTimeProduce,jdbcType=TIMESTAMP},
+            c_time_process = #{cTimeProcess,jdbcType=TIMESTAMP},
+            c_remark       = #{cRemark,jdbcType=VARCHAR}
+        where c_id = #{cId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select c_id,
+               c_num_cut,
+               c_num_count,
+               c_time_produce,
+               c_time_process,
+               c_remark
+        from ms_clothes
+        where c_id = #{cId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select c_id,
+               c_num_cut,
+               c_num_count,
+               c_time_produce,
+               c_time_process,
+               c_remark
+        from ms_clothes
+    </select>
+
+    <!--    产品添加界面数据-->
+    <select id="selectAddClothes" resultMap="CompanyResultMap">
+        select c_id,
+               co_name,
+               c_num_cut,
+               t_name,
+               s_name,
+               u_username processor,
+               c_num_count,
+               c_time_produce,
+               c_time_process,
+               c_remark
+        from ms_clothes
+                 left join ms_company
+                           on ms_clothes.c_company = ms_company.co_code
+                 left join ms_type
+                           on ms_clothes.c_type = ms_type.t_code
+                 left JOIN ms_style
+                           on ms_clothes.c_style = ms_style.s_code
+                 left JOIN ms_user
+                           on ms_clothes.c_processor = ms_user.u_code
+    </select>
+
+    <!--    通过条件查询服装列表-->
+    <select id="selectClothesByExamples" parameterType="com.learn.managesys.bean.Clothes" resultMap="CompanyResultMap">
+        select c_id,
+        co_name,
+        c_num_cut,
+        t_name,
+        s_name,
+        col_name,
+        si_name,
+        u1.u_username processor,
+        u2.u_username producer,
+        c_num_count,
+        c_time_produce,
+        c_time_process,
+        c_remark
+        from ms_clothes
+        left join ms_company
+        on ms_clothes.c_company = ms_company.co_code
+        left join ms_type
+        on ms_clothes.c_type = ms_type.t_code
+        left JOIN ms_style
+        on ms_clothes.c_style = ms_style.s_code
+        left join ms_color
+        on ms_clothes.c_color = ms_color.col_code
+        left join ms_size
+        on ms_clothes.c_size = ms_size.si_code
+        left JOIN ms_user u1
+        on ms_clothes.c_processor = u1.u_code
+        left JOIN ms_user u2
+        on ms_clothes.c_producer = u2.u_code
+        <where>
+            <if test="cId != null">
+                c_id = #{cId,jdbcType=INTEGER}
+            </if>
+            <if test="cCompanyCode != null">
+                c_company = #{cCompanyCode,jdbcType=INTEGER}
+            </if>
+            <if test="cNumCut != null">
+                and c_num_cut = #{cNumCut,jdbcType=INTEGER}
+            </if>
+            <if test="cTypeCode != null">
+                and c_type = #{cTypeCode,jdbcType=INTEGER}
+            </if>
+            <if test="cStyleCode != null">
+                and c_style = #{cStyleCode,jdbcType=INTEGER}
+            </if>
+            <if test="cProcessorCode != null">
+                and c_processor = #{cProcessorCode,jdbcType=INTEGER}
+            </if>
+            <if test="cProducerCode != null">
+                and c_producer = #{cProducerCode,jdbcType=INTEGER}
+            </if>
+
+            <if test="cTimeProcess != null">
+                and c_time_process &gt;= #{cTimeProcess,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="cTimeProduce != null">
+                and c_time_produce &gt;= #{cTimeProduce,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+    <!--    查询模态框列表数据-->
+    <select id="selectModal" parameterType="com.learn.managesys.bean.Clothes" resultMap="CompanyResultMap">
+        select c_style,
+               s_name,
+               c_type,
+               t_name,
+               c_color,
+               col_name,
+               c_size,
+               si_name
+        from ms_clothes
+                 left join ms_type
+                           on ms_clothes.c_type = ms_type.t_code
+                 left JOIN ms_style
+                           on ms_clothes.c_style = ms_style.s_code
+                 left join ms_color
+                           on ms_clothes.c_color = ms_color.col_code
+                 left join ms_size
+                           on ms_clothes.c_size = ms_size.si_code
+    </select>
+
+    <insert id="insertClothes" parameterType="com.learn.managesys.bean.Clothes">
+        insert into ms_clothes (c_id, c_company, c_num_cut,
+                                c_type, c_style, c_color,
+                                c_size, c_producer, c_processor,
+                                c_num_count, c_time_produce, c_time_process,
+                                c_remark)
+        values (#{cId,jdbcType=INTEGER}, #{cCompanyCode,jdbcType=INTEGER}, #{cNumCut,jdbcType=INTEGER},
+                #{cTypeCode,jdbcType=INTEGER}, #{cStyleCode,jdbcType=INTEGER}, #{cColorCode,jdbcType=INTEGER},
+                #{cSizeCode,jdbcType=INTEGER}, #{cProducerCode,jdbcType=INTEGER}, #{cProcessorCode,jdbcType=INTEGER},
+                #{cNumCount,jdbcType=INTEGER}, #{cTimeProduce,jdbcType=TIMESTAMP}, #{cTimeProcess,jdbcType=TIMESTAMP},
+                #{cRemark,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateById" parameterType="com.learn.managesys.bean.Clothes">
+        update ms_clothes
+        set c_time_produce = #{cTimeProduce,jdbcType=TIMESTAMP},
+            c_producer     = #{cProducerCode,jdbcType=INTEGER}
+        where c_id = #{cId,jdbcType=INTEGER}
+          and c_producer = 10000
+    </update>
+</com.learns.crowd.mapper>

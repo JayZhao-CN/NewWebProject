@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
+<com.learns.crowd.mapper namespace="com.learn.managesys.dao.ColorMapper">
+  <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Color">
+    <id column="col_id" jdbcType="INTEGER" property="colId" />
+    <result column="col_name" jdbcType="VARCHAR" property="colName" />
+    <result column="col_code" jdbcType="INTEGER" property="colCode" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ms_color
+    where col_id = #{colId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.learn.managesys.bean.Color">
+    insert into ms_color (col_id, col_name, col_code
+      )
+    values (#{colId,jdbcType=INTEGER}, #{colName,jdbcType=VARCHAR}, #{colCode,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.learn.managesys.bean.Color">
+    update ms_color
+    set col_name = #{colName,jdbcType=VARCHAR},
+      col_code = #{colCode,jdbcType=INTEGER}
+    where col_id = #{colId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select col_id, col_name, col_code
+    from ms_color
+    where col_id = #{colId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select col_id, col_name, col_code
+    from ms_color
+  </select>
+</com.learns.crowd.mapper>

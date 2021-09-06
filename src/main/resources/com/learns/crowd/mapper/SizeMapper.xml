@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
+<com.learns.crowd.mapper namespace="com.learn.managesys.dao.SizeMapper">
+  <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Size">
+    <id column="si_id" jdbcType="INTEGER" property="siId" />
+    <result column="si_name" jdbcType="VARCHAR" property="siName" />
+    <result column="si_code" jdbcType="INTEGER" property="siCode" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ms_size
+    where si_id = #{siId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.learn.managesys.bean.Size">
+    insert into ms_size (si_id, si_name, si_code
+      )
+    values (#{siId,jdbcType=INTEGER}, #{siName,jdbcType=VARCHAR}, #{siCode,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.learn.managesys.bean.Size">
+    update ms_size
+    set si_name = #{siName,jdbcType=VARCHAR},
+      si_code = #{siCode,jdbcType=INTEGER}
+    where si_id = #{siId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select si_id, si_name, si_code
+    from ms_size
+    where si_id = #{siId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select si_id, si_name, si_code
+    from ms_size
+  </select>
+</com.learns.crowd.mapper>

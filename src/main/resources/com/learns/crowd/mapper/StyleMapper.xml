@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
+<com.learns.crowd.mapper namespace="com.learn.managesys.dao.StyleMapper">
+  <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Style">
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="s_name" jdbcType="VARCHAR" property="sName" />
+    <result column="s_code" jdbcType="INTEGER" property="sCode" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ms_style
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.learn.managesys.bean.Style">
+    insert into ms_style (s_id, s_name, s_code
+      )
+    values (#{sId,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR}, #{sCode,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.learn.managesys.bean.Style">
+    update ms_style
+    set s_name = #{sName,jdbcType=VARCHAR},
+      s_code = #{sCode,jdbcType=INTEGER}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select s_id, s_name, s_code
+    from ms_style
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select s_id, s_name, s_code
+    from ms_style
+  </select>
+</com.learns.crowd.mapper>

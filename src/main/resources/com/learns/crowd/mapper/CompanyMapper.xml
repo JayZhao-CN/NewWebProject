@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
+<com.learns.crowd.mapper namespace="com.learn.managesys.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Company">
+    <id column="co_id" jdbcType="INTEGER" property="coId" />
+    <result column="co_name" jdbcType="VARCHAR" property="coName" />
+    <result column="co_code" jdbcType="INTEGER" property="coCode" />
+    <result column="co_leader" jdbcType="INTEGER" property="coLeader" />
+    <result column="co_state" jdbcType="VARCHAR" property="coState" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ms_company
+    where co_id = #{coId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.learn.managesys.bean.Company">
+    insert into ms_company (co_id, co_name, co_code, 
+      co_leader, co_state)
+    values (#{coId,jdbcType=INTEGER}, #{coName,jdbcType=VARCHAR}, #{coCode,jdbcType=INTEGER}, 
+      #{coLeader,jdbcType=INTEGER}, #{coState,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.learn.managesys.bean.Company">
+    update ms_company
+    set co_name = #{coName,jdbcType=VARCHAR},
+      co_code = #{coCode,jdbcType=INTEGER},
+      co_leader = #{coLeader,jdbcType=INTEGER},
+      co_state = #{coState,jdbcType=VARCHAR}
+    where co_id = #{coId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select co_id, co_name, co_code, co_leader, co_state
+    from ms_company
+    where co_id = #{coId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select co_id, co_name, co_code, co_leader, co_state
+    from ms_company
+  </select>
+</com.learns.crowd.mapper>
