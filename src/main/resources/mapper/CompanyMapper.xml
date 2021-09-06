@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
-<com.learns.crowd.mapper namespace="com.learn.managesys.dao.CompanyMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.managesys.dao.CompanyMapper">
   <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Company">
     <id column="co_id" jdbcType="INTEGER" property="coId" />
     <result column="co_name" jdbcType="VARCHAR" property="coName" />
@@ -35,4 +35,4 @@
     select co_id, co_name, co_code, co_leader, co_state
     from ms_company
   </select>
-</com.learns.crowd.mapper>
+</mapper>

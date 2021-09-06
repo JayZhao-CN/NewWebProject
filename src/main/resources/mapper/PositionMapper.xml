@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE com.learns.crowd.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-com.learns.crowd.mapper.dtd">
-<com.learns.crowd.mapper namespace="com.learn.managesys.dao.PositionMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.managesys.dao.PositionMapper">
   <resultMap id="BaseResultMap" type="com.learn.managesys.bean.Position">
     <id column="p_id" jdbcType="INTEGER" property="pId" />
     <result column="p_name" jdbcType="VARCHAR" property="pName" />
@@ -31,4 +31,4 @@
     select p_id, p_name, p_code
     from ms_position
   </select>
-</com.learns.crowd.mapper>
+</mapper>

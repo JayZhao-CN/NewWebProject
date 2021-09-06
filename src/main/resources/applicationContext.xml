@@ -28,11 +28,11 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="comboPooledDataSource"/>
         <!--  指定mybatis，mapper文件的位置  -->
-        <property name="mapperLocations" value="classpath:com.learns.crowd.mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!--  配置扫描器，将mybatis接口的实现加入到IOC容器  -->
-    <bean class="org.mybatis.spring.com.learns.crowd.mapper.MapperScannerConfigurer">
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--  扫描所有的dao实现，加入到ioc容器  -->
         <property name="basePackage" value="com.learn.managesys.dao"/>
     </bean>

@@ -19,7 +19,7 @@
         <javaModelGenerator targetPackage="com.learn.managesys.bean" targetProject="src/main/java"/>
 
 <!--        指定sql映射文件位置-->
-        <sqlMapGenerator targetPackage="com.learns.crowd.mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
 <!--        指定dao接口生成的位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.learn.managesys.dao" targetProject="src/main/java"/>
